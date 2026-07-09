@@ -32,14 +32,14 @@ Secrets Manager → CloudTrail → CloudWatch Logs → Metric Filter → Alarm �
 ###  Step 1 — Create a Secret
 Created a secret called `TopSecretInfo` in AWS Secrets Manager using a key-value pair. This is the sensitive resource being monitored throughout the project.
 
-![Secret Created](screenshots/secret-created.png)
+![SecretKey Created](Screenshots/secretkey-stored.png)
 
 ---
 
 ###  Step 2 — Configure CloudTrail
 Set up a CloudTrail trail called `secrets-manager-trail` to record all management events across the AWS account (Asia Pacific - Mumbai region). Logs are stored in a dedicated S3 bucket.
 
-![CloudTrail Created](screenshots/cloudtrail-created.png)
+![CloudTrail Created](Screenshots/cloudTrail-create.png)
 
 ---
 
@@ -52,7 +52,7 @@ Accessed the secret two ways to generate CloudTrail events:
 aws secretsmanager get-secret-value --secret-id "TopSecretInfo" --region ap-south-1
 ```
 
-![CloudShell Access](screenshots/cloudshell-access.png)
+![CloudShell Access](Screenshots/cloudShell1.png)
 
 ---
 
@@ -61,7 +61,7 @@ aws secretsmanager get-secret-value --secret-id "TopSecretInfo" --region ap-sout
 - Created a metric filter with pattern `"GetSecretValue"` to detect secret access events
 - Configured metric: namespace `SecurityMetrics`, metric name `Secret is accessed`, value `1`, default `0`
 
-![Metric Filter](screenshots/metric-filter.png)
+![Metric Filter](Screenshots/MetricDetails.png)
 
 ---
 
@@ -71,7 +71,7 @@ aws secretsmanager get-secret-value --secret-id "TopSecretInfo" --region ap-sout
 - Subscribed an email address to receive notifications
 - Confirmed the SNS email subscription
 
-![SNS Subscription Confirmation](screenshots/sns-subscription.png)
+![SNS Subscription Confirmation](Screenshots/aws -srn-notification-subscription.png)
 
 ---
 
@@ -80,9 +80,9 @@ aws secretsmanager get-secret-value --secret-id "TopSecretInfo" --region ap-sout
 - CloudWatch alarm moved to **In Alarm** state
 - Received an email notification from AWS SNS within minutes
 
-![Alarm In Alarm State](screenshots/alarm-triggered.png)
+![Alarm In Alarm State](Screenshots/alarm-secretkeyaccessed.png)
 
-![Email Notification](screenshots/alarm-email.png)
+![Email Notification](Screenshots/alarm-aws.png)
 
 ---
 
